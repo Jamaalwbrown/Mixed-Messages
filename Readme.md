@@ -20,10 +20,9 @@ Project is created with:
 
 ## Setup
 
-To run this project, install it locally using npm:
+To run this project, download the Mixed-Messages folder and run using node.js
 
 ```bash
-$cd ../Mixed-Messages
-$npm install
-$npm start
+$cd ../Mixed-Messages/js
+$node script.js
 ```
