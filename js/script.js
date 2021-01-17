@@ -11,17 +11,18 @@ const generateRandomNumber = (num) => {
 
 let personalMessage = [ ];
 
-function createMsg(randFunction, inputMessage) {
+function createMsg(randFunction, propIndex, inputMessage) {
+
     //createMsg will use a random generator function to create a message using beginning strings and combinedKnowledge object values
-    switch (randFunction(4)) {
-        case 1:
-            inputMessage.push(`You should play ${combinedKnowledge['games'][randFunction(4)]}`);
+    switch (propIndex) {
+        case 'games':
+            inputMessage.push(`You should play ${combinedKnowledge[propIndex][randFunction(combinedKnowledge[propIndex].length)]}`);
             return
-        case 2:
-            inputMessage.push(`Your mindset should be to ${combinedKnowledge['motivation'][randFunction(4)]}`);
+        case 'motivation':
+            inputMessage.push(`Your mindset should be to ${combinedKnowledge[propIndex][randFunction(combinedKnowledge[propIndex].length)]}`);
             return
-        case 3:
-            inputMessage.push(`Your day is currently ${combinedKnowledge['dayInfo'][randFunction(4)]}`);
+        case 'dayInfo':
+            inputMessage.push(`Your day is currently ${combinedKnowledge[propIndex][randFunction(combinedKnowledge[propIndex].length)]}`);
             return
         default:
             inputMessage.push('I have no messages for you at this time');
@@ -35,5 +36,9 @@ function formatMessage(message) {
 }
 
 // log the random message to the user
-createMsg(generateRandomNumber, personalMessage);
+
+for(let prop in combinedKnowledge) {
+    console.log(prop);
+    createMsg(generateRandomNumber, prop, personalMessage);
+}
 formatMessage(personalMessage);
