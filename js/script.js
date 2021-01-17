@@ -9,19 +9,31 @@ const generateRandomNumber = (num) => {
     return Math.floor((Math.random() * num));
 }
 
-function createMsg(randFunction) {
+let personalMessage = [ ];
+
+function createMsg(randFunction, inputMessage) {
     //createMsg will use a random generator function to create a message using beginning strings and combinedKnowledge object values
     switch (randFunction(4)) {
         case 1:
-            return `You should play ${combinedKnowledge['games'][randFunction(4)]}`;
+            inputMessage.push(`You should play ${combinedKnowledge['games'][randFunction(4)]}`);
+            return
         case 2:
-            return `Your mindset should be to ${combinedKnowledge['motivation'][randFunction(4)]}`;
+            inputMessage.push(`Your mindset should be to ${combinedKnowledge['motivation'][randFunction(4)]}`);
+            return
         case 3:
-            return `Your day is currently ${combinedKnowledge['dayInfo'][randFunction(4)]}`;
+            inputMessage.push(`Your day is currently ${combinedKnowledge['dayInfo'][randFunction(4)]}`);
+            return
         default:
-            return 'I have no messages for you at this time';
+            inputMessage.push('I have no messages for you at this time');
+            return
     }
 }
 
+function formatMessage(message) {
+    const formatted = message.join('\n');
+    console.log(formatted);
+}
+
 // log the random message to the user
-console.log(createMsg(generateRandomNumber));
+createMsg(generateRandomNumber, personalMessage);
+formatMessage(personalMessage);
